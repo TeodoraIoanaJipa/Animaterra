@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AnimaTerra</string>
+    <string name="title_activity_video_play">VideoPlay</string>
+    <string name="capture_video">CAPTURE VIDEO!</string>
+    <string name="welcome">Welcome to Animaterra!</string>
+    <string name="watch_your_video">WATCH YOUR VIDEO!</string>
+</resources>
