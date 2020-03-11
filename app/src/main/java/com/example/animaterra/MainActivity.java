@@ -2,8 +2,12 @@ package com.example.animaterra;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -14,12 +18,25 @@ import java.net.URI;
 public class MainActivity extends AppCompatActivity {
 
     private static int VIDEO_REQUEST = 101;
+    private static int PERMISSION_REQUEST_CODE = 12;
     private Uri videoUri = null;
+
+    private void requestPermission() {
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.CAMERA},
+                PERMISSION_REQUEST_CODE);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Permission is not granted
+            requestPermission();
+        }
+
     }
 
     public void captureVideo(View view) {
@@ -37,8 +54,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if(requestCode==VIDEO_REQUEST && resultCode == RESULT_OK){
-            videoUri =  data.getData();
+        if (requestCode == VIDEO_REQUEST && resultCode == RESULT_OK) {
+            videoUri = data.getData();
         }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

@@ -1,11 +1,16 @@
 package com.example.animaterra
 
+import android.Manifest
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.graphics.Point
 import android.net.Uri
+import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.google.ar.core.Anchor
 import com.google.ar.core.HitResult
 import com.google.ar.core.Plane
@@ -22,25 +27,39 @@ class ShowAnimalActivity : AppCompatActivity() {
 
     private var isTracking: Boolean = false
     private var isHitting: Boolean = false
+    private val PERMISSION_REQUEST_CODE = 101
+
+    private fun makeRequest() {
+        ActivityCompat.requestPermissions(this,
+                arrayOf(Manifest.permission.CAMERA),
+                PERMISSION_REQUEST_CODE)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_show_animal)
 
-        arFragment = sceneform_fragment as ArFragment
+        val permission = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.CAMERA)
 
-        // Adds a listener to the ARSceneView
-        // Called before processing each frame
-        arFragment.arSceneView.scene.addOnUpdateListener { frameTime ->
-            arFragment.onUpdate(frameTime)
-            onUpdate()
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            Log.i("PermissionDemo", "Permission to record denied")
+        }else{
+            arFragment = sceneform_fragment as ArFragment
+
+            // Adds a listener to the ARSceneView
+            // Called before processing each frame
+            arFragment.arSceneView.scene.addOnUpdateListener { frameTime ->
+                arFragment.onUpdate(frameTime)
+                onUpdate()
+            }
+
+            // Set the onclick lister for our button
+            // Change this string to point to the .sfb file of your choice :)
+            floatingActionButton.setOnClickListener { addObject(Uri.parse("NOVELO_EARTH.sfb")) }
+            showFab(false)
+
         }
-
-        // Set the onclick lister for our button
-        // Change this string to point to the .sfb file of your choice :)
-        floatingActionButton.setOnClickListener { addObject(Uri.parse("NOVELO_EARTH.sfb")) }
-        showFab(false)
-
     }
 
     // Simple function to show/hide our FAB
