@@ -27,7 +27,13 @@ public class VideoPlayActivity extends AppCompatActivity {
 
         Uri videoUri = Uri.parse(getIntent().getExtras().getString("video"));
         mVideoView.setVideoURI(videoUri);
-        mVideoView.start();
+//        mVideoView.start();
+        mVideoView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mVideoView.start();
+            }
+        });
     }
 
 }
