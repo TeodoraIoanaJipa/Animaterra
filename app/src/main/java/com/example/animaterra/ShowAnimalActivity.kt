@@ -27,7 +27,7 @@ class ShowAnimalActivity : AppCompatActivity() {
 
     private var isTracking: Boolean = false
     private var isHitting: Boolean = false
-    private val PERMISSION_REQUEST_CODE = 101
+    private val PERMISSION_REQUEST_CODE = 1
 
     private fun makeRequest() {
         ActivityCompat.requestPermissions(this,
@@ -56,7 +56,7 @@ class ShowAnimalActivity : AppCompatActivity() {
 
             // Set the onclick lister for our button
             // Change this string to point to the .sfb file of your choice :)
-            floatingActionButton.setOnClickListener { addObject(Uri.parse("NOVELO_EARTH.sfb")) }
+            floatingActionButton.setOnClickListener { addObject(Uri.parse("Wolves.sfb")) }
             showFab(false)
 
         }
@@ -110,7 +110,9 @@ class ShowAnimalActivity : AppCompatActivity() {
     private fun updateTracking(): Boolean {
         val frame = arFragment.arSceneView.arFrame
         val wasTracking = isTracking
-        isTracking = frame.camera.trackingState == TrackingState.TRACKING
+        if (frame != null) {
+            isTracking = frame.camera.trackingState == TrackingState.TRACKING
+        }
         return isTracking != wasTracking
     }
 

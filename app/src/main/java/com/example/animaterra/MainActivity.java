@@ -20,10 +20,11 @@ public class MainActivity extends AppCompatActivity {
     private static int VIDEO_REQUEST = 101;
     private static int PERMISSION_REQUEST_CODE = 12;
     private Uri videoUri = null;
+    private static String[] PERMISSIONS = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO};
+
 
     private void requestPermission() {
-        ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.CAMERA},
+        ActivityCompat.requestPermissions(this, PERMISSIONS,
                 PERMISSION_REQUEST_CODE);
     }
 
@@ -31,9 +32,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-                != PackageManager.PERMISSION_GRANTED) {
-            // Permission is not granted
+
+        boolean shouldRequestPermissions = false;
+        for (String permission : PERMISSIONS) {
+            if (ContextCompat.checkSelfPermission(this, permission)
+                    != PackageManager.PERMISSION_GRANTED) {
+                // Permission is not granted
+                shouldRequestPermissions = true;
+            }
+
+        }
+        if (shouldRequestPermissions) {
             requestPermission();
         }
 
@@ -52,6 +61,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(playIntent);
     }
 
+    public void displayAR(View view) {
+        Intent playIntent = new Intent(this, ShowAnimalActivity.class);
+        startActivity(playIntent);
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == VIDEO_REQUEST && resultCode == RESULT_OK) {

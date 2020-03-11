@@ -33,8 +33,6 @@ public class VideoPlayActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mVideoView.start();
-                Intent playIntent = new Intent(VideoPlayActivity.this, ShowAnimalActivity.class);
-                startActivity(playIntent);
             }
         });
     }
