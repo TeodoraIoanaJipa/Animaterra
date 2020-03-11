@@ -1,5 +1,6 @@
 package com.example.animaterra;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -27,11 +28,13 @@ public class VideoPlayActivity extends AppCompatActivity {
 
         Uri videoUri = Uri.parse(getIntent().getExtras().getString("video"));
         mVideoView.setVideoURI(videoUri);
-//        mVideoView.start();
+
         mVideoView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mVideoView.start();
+                Intent playIntent = new Intent(VideoPlayActivity.this, ShowAnimalActivity.class);
+                startActivity(playIntent);
             }
         });
     }
