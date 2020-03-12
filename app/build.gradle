@@ -45,3 +45,14 @@ sceneform.asset('sample_data/wolves/Wolves.obj',
         'default',
         'sample_data/wolves/Wolves.sfa',
         'src/main/assets/Wolves')
+
+
+sceneform.asset('sample_data/bears/Mesh_Bear.obj',
+        'default',
+        'sample_data/bears/Mesh_Bear.sfa',
+        'src/main/assets/Mesh_Bear')
+
+sceneform.asset('sample_data/cow/Cow.obj',
+        'default',
+        'sample_data/cow/Cow.sfa',
+        'src/main/assets/Cow')

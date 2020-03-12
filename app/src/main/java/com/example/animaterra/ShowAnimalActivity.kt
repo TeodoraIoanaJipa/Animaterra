@@ -56,7 +56,8 @@ class ShowAnimalActivity : AppCompatActivity() {
 
             // Set the onclick lister for our button
             // Change this string to point to the .sfb file of your choice :)
-            floatingActionButton.setOnClickListener { addObject(Uri.parse("Wolves.sfb")) }
+            val animals = arrayOf("Wolves.sfb","Mesh_Bear.sfb","Cow.sfb")
+            floatingActionButton.setOnClickListener { addObject(Uri.parse(animals[1])) }
             showFab(false)
 
         }

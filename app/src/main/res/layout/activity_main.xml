@@ -17,7 +17,7 @@
         android:text="@string/welcome"
         android:textColor="@color/colorPrimary"
         android:textSize="26sp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/recordButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.382"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,54 +25,36 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/recordButton"
         style="@style/Widget.MaterialComponents.Button.UnelevatedButton.Icon"
         android:layout_width="278dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:background="@color/colorPrimary"
         android:drawableStart="@drawable/icons_video_24"
-        android:onClick="captureVideo"
         android:text="@string/capture_video"
         android:textColor="@android:color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.721"
+        app:layout_constraintHorizontal_bias="0.984"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.385" />
-
-    <Button
-        android:id="@+id/button3"
-        style="@style/Widget.MaterialComponents.Button.UnelevatedButton.Icon"
-        android:layout_width="278dp"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:color="@android:color/darker_gray"
-        android:drawableStart="@drawable/icons_video_24"
-        android:onClick="playVideo"
-        android:text="@string/watch_your_video"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.721"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        app:layout_constraintVertical_bias="0.026"
-        app:strokeColor="@android:color/darker_gray" />
+        app:layout_constraintVertical_bias="0.327" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="278dp"
         android:layout_height="48dp"
-        android:text="Augmented Reality"
         android:background="@color/colorPrimary"
+        android:onClick="displayAR"
+        android:text="Augmented Reality"
         android:textColor="@android:color/black"
         android:textSize="20sp"
-        android:onClick="displayAR"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.984"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recordButton"
+        app:layout_constraintVertical_bias="0.07" />
 </androidx.constraintlayout.widget.ConstraintLayout>

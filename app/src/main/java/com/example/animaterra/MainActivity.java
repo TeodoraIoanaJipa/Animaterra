@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.Button;
 
 import java.net.URI;
 
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private static int PERMISSION_REQUEST_CODE = 12;
     private Uri videoUri = null;
     private static String[] PERMISSIONS = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO};
-
+    private Button recordButton;
 
     private void requestPermission() {
         ActivityCompat.requestPermissions(this, PERMISSIONS,
@@ -40,11 +41,18 @@ public class MainActivity extends AppCompatActivity {
                 // Permission is not granted
                 shouldRequestPermissions = true;
             }
-
         }
         if (shouldRequestPermissions) {
             requestPermission();
         }
+
+        recordButton = (Button) findViewById(R.id.recordButton);
+        recordButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                captureVideo(v);
+            }
+        });
 
     }
 
@@ -65,10 +73,12 @@ public class MainActivity extends AppCompatActivity {
         Intent playIntent = new Intent(this, ShowAnimalActivity.class);
         startActivity(playIntent);
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == VIDEO_REQUEST && resultCode == RESULT_OK) {
             videoUri = data.getData();
+            playVideo(null);
         }
         super.onActivityResult(requestCode, resultCode, data);
     }

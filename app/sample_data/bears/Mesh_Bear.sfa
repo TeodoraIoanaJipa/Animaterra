@@ -1,0 +1,50 @@
+{
+  materials: [
+    {
+      name: 'lambert2SG',
+      parameters: [
+        {
+          baseColor: 'Tex_Bear',
+        },
+        {
+          baseColorTint: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          metallic: 0,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/obj_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'TexCoord',
+      'Orientation',
+    ],
+    collision: {},
+    file: 'sample_data/bears/Mesh_Bear.obj',
+    name: 'Mesh_Bear',
+    recenter: 'root',
+    scale: 0.013221999999999999,
+  },
+  samplers: [
+    {
+      file: 'sample_data/bears\\Tex_Bear.png',
+      name: 'Tex_Bear',
+      pipeline_name: 'Tex_Bear.png',
+    },
+  ],
+  version: '0.54:2',
+}
